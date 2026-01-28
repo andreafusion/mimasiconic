@@ -283,6 +283,45 @@
     @media (prefers-reduced-motion: reduce){
       *{ scroll-behavior: auto !important; }
     }
+    /* =========================
+   FIX FLIP CARD (IMAGENES)
+   ========================= */
+
+.flip-wrap {
+  perspective: 1400px !important;
+}
+
+.flip-card {
+  position: relative !important;
+  transform-style: preserve-3d !important;
+  -webkit-transform-style: preserve-3d !important;
+}
+
+.flip-card .face {
+  position: absolute !important;
+  inset: 0 !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+}
+
+.flip-card .face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+}
+
+.flip-card .face.front {
+  transform: rotateY(0deg) translateZ(2px) !important;
+  z-index: 2 !important;
+}
+
+.flip-card .face.back {
+  transform: rotateY(180deg) translateZ(1px) !important;
+  z-index: 1 !important;
+}
+
   </style>
 </head>
 
