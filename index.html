@@ -645,12 +645,16 @@
       gsap.to(card, {
         rotateY: 180,
         ease: "none",
-        scrollTrigger: {
-          trigger: ".hero-stage",
-          start: "top top",
-          end: "bottom top",
-          scrub: true
-        }
+       scrollTrigger: {
+  trigger: ".hero-stage",
+  start: "top 10%",     
+  end: "+=450",         
+  scrub: 0.6,           
+  pin: true,            
+  anticipatePin: 1
+  // markers: true       
+}
+
       });
     }
   </script>
