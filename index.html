@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mimas Iconic | Manicura & Pedicura en Valencia</title>
+  <meta name="description" content="Mimas Iconic: manicura, pedicura y nail art con un estilo cute-minimal, experiencia cuidada, segura y personalizada en Valencia." />
+  <meta name="theme-color" content="#f7d7ff" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #fbf7ff;
+      --ink: #1f1b2e;
+      --muted: rgba(31,27,46,.70);
+
+      --pink: #ffb3da;
+      --lilac: #cdb4ff;
+      --blue: #aee6ff;
+      --mint: #caffbf;
+
+      --card: rgba(255,255,255,.72);
+      --stroke: rgba(31,27,46,.10);
+      --shadow: 0 18px 50px rgba(31,27,46,.10);
+      --radius: 22px;
+
+      --maxw: 1120px;
+    }
+
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin: 0;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,179,218,.35), transparent 60%),
+                  radial-gradient(1200px 600px at 90% 20%, rgba(174,230,255,.30), transparent 55%),
+                  radial-gradient(900px 500px at 60% 95%, rgba(205,180,255,.25), transparent 55%),
+                  var(--bg);
+      color: var(--ink);
+      font-family: "Quicksand", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+
+    /* Top nav */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(251,247,255,.70);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .nav{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      gap: 14px;
+    }
+    .brand{
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+    .logo-dot{
+      width: 12px; height: 12px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--pink), var(--lilac), var(--blue));
+      box-shadow: 0 0 0 6px rgba(205,180,255,.18);
+    }
+    nav ul{
+      display: flex; gap: 14px; list-style: none; padding: 0; margin: 0;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    nav a{
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      color: rgba(31,27,46,.82);
+      border: 1px solid transparent;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    nav a:hover{
+      background: rgba(255,255,255,.75);
+      border-color: var(--stroke);
+      transform: translateY(-1px);
+    }
+    .cta{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,179,218,.95), rgba(205,180,255,.85), rgba(174,230,255,.85));
+      border: 1px solid rgba(31,27,46,.10);
+      box-shadow: 0 10px 26px rgba(31,27,46,.12);
+      font-weight: 800;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .cta small{ font-weight: 700; opacity: .85; }
+
+    /* Sections */
+    section{ padding: 80px 0; }
+    .section-title{
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 18px; margin-bottom: 18px;
+    }
+    h2{
+      margin: 0;
+      font-family: "Fraunces", serif;
+      letter-spacing: .2px;
+      font-size: clamp(26px, 3vw, 38px);
+    }
+    .kicker{ color: var(--muted); font-weight: 700; }
+
+    /* Hero */
+    .hero{
+      padding: 36px 0 10px;
+    }
+    .hero-stage{
+      position: relative;
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.55));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      min-height: 78vh;
+    }
+    .hero-grid{
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1.2fr;
+      gap: 18px;
+      padding: 34px 26px 18px;
+      align-items: center;
+    }
+    .hero-word{
+      font-family: "Fraunces", serif;
+      font-weight: 800;
+      letter-spacing: .5px;
+      font-size: clamp(38px, 6vw, 70px);
+      line-height: .92;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity .25s ease, transform .25s ease;
+    }
+    .hero-word.left{ text-align: right; }
+    .hero-word.right{ text-align: left; }
+
+    /* 3D flip card */
+    .flip-wrap{
+      display: grid;
+      place-items: center;
+      perspective: 1200px;
+    }
+    .flip-card{
+      width: min(320px, 66vw);
+      aspect-ratio: 3/4;
+      position: relative;
+      transform-style: preserve-3d;
+      will-change: transform;
+      border-radius: 26px;
+      box-shadow: 0 20px 60px rgba(31,27,46,.18);
+      border: 1px solid rgba(31,27,46,.10);
+      overflow: hidden;
+      background: rgba(255,255,255,.55);
+    }
+    .face{
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+    }
+    .face img{
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.05) contrast(1.02);
+    }
+    .face.back{
+      transform: rotateY(180deg);
+    }
+    .halo{
+      position: absolute;
+      inset: -40px -40px auto auto;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,179,218,.55), transparent 55%),
+                  radial-gradient(circle at 60% 60%, rgba(174,230,255,.45), transparent 55%),
+                  radial-gradient(circle at 50% 50%, rgba(205,180,255,.35), transparent 55%);
+      filter: blur(4px);
+      transform: rotate(18deg);
+      pointer-events: none;
+    }
+
+    .hero-bottom{
+      padding: 0 26px 26px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: end;
+    }
+    .hero-copy{
+      color: rgba(31,27,46,.78);
+      font-weight: 700;
+      max-width: 48ch;
+    }
+    .pill-row{
+      display:flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end;
+    }
+    .pill{
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.70);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    /* Scroll-driven transitions */
+    .services-tease{
+      margin-top: 18px;
+      padding: 20px 22px;
+      border-top: 1px dashed rgba(31,27,46,.18);
+      display: grid;
+      gap: 14px;
+    }
+    .tease-head{
+      display:flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    }
+    .tease-title{
+      font-family: "Fraunces", serif;
+      font-weight: 800;
+      margin: 0;
+      font-size: 22px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .25s ease, transform .25s ease;
+    }
+    .tease-title.show{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Cards + details */
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .card{
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: var(--card);
+      box-shadow: 0 16px 40px rgba(31,27,46,.08);
+      padding: 16px;
+    }
+    .card h3{
+      margin: 0 0 6px;
+      font-size: 16px;
+      font-weight: 900;
+    }
+    .card p{ margin: 0; color: var(--muted); font-weight: 700; }
+    details{
+      border-radius: 18px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.70);
+      padding: 12px 14px;
+    }
+    summary{
+      cursor: pointer;
+      font-weight: 900;
+      list-style: none;
+      display:flex; align-items:center; justify-content: space-between;
+      gap: 12px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .chev{
+      width: 28px; height: 28px;
+      display:grid; place-items:center;
+      border-radius: 999px;
+      background: rgba(205,180,255,.22);
+      border: 1px solid var(--stroke);
+      transition: transform .2s ease;
+      font-weight: 900;
+    }
+    details[open] .chev{ transform: rotate(45deg); }
+    .details-body{
+      margin-top: 10px;
+      color: rgba(31,27,46,.82);
+      font-weight: 700;
+    }
+    .price{
+      display:inline-flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 10px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(174,230,255,.18);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    /* Gallery */
+    .masonry{
+      columns: 3 260px;
+      column-gap: 14px;
+    }
+    .shot{
+      break-inside: avoid;
+      margin: 0 0 14px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 14px 34px rgba(31,27,46,.10);
+    }
+    .shot img{ width:100%; display:block; }
+
+    /* About */
+    .two-col{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .badge{
+      display:inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.70);
+      font-weight: 800;
+      color: rgba(31,27,46,.86);
+    }
+
+    /* Reviews */
+    .reviews{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .quote{
+      font-weight: 800;
+      color: rgba(31,27,46,.80);
+    }
+    .who{
+      margin-top: 10px;
+      font-weight: 900;
+      color: rgba(31,27,46,.72);
+    }
+
+    /* Booking */
+    .booking{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .steps{
+      display:grid;
+      gap: 12px;
+    }
+    .step{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+    }
+    .num{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      display:grid; place-items:center;
+      font-weight: 900;
+      background: rgba(255,179,218,.28);
+      border: 1px solid var(--stroke);
+      flex: 0 0 auto;
+    }
+
+    footer{
+      padding: 40px 0 60px;
+      color: rgba(31,27,46,.70);
+      font-weight: 800;
+    }
+    .tiny{ font-size: 12px; color: rgba(31,27,46,.60); }
+
+    /* Reveal */
+    .reveal{
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.show{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; text-align:center; }
+      .hero-word.left, .hero-word.right{ text-align:center; }
+      .hero-bottom{ grid-template-columns: 1fr; }
+      .pill-row{ justify-content:center; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .two-col{ grid-template-columns: 1fr; }
+      .reviews{ grid-template-columns: 1fr; }
+      .booking{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand">
+        <span class="logo-dot" aria-hidden="true"></span>
+        <span>Mimas Iconic</span>
+      </div>
+
+      <nav aria-label="Menú">
+        <ul>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#sobre">Sobre mí</a></li>
+          <li><a href="#resenas">Reseñas</a></li>
+          <li><a href="#reservar" class="cta">Reservar <small>↗</small></a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-stage" id="inicio">
+        <div class="halo" aria-hidden="true"></div>
+
+        <div class="hero-grid">
+          <div class="hero-word left" id="wordLeft">Mimas</div>
+
+          <div class="flip-wrap">
+            <div class="flip-card" id="flipCard" aria-label="Imagen principal con efecto flip al hacer scroll">
+              <div class="face front">
+                <img src="assets/images/portrait.jpg" alt="Foto de Mimas Iconic" />
+              </div>
+              <div class="face back">
+                <img src="assets/images/manicure.jpg" alt="Detalle de manicura Mimas Iconic" />
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-word right" id="wordRight">Iconic</div>
+        </div>
+
+        <div class="hero-bottom">
+          <div class="hero-copy">
+            Manicura y pedicura en Valencia con un toque cute-minimal.
+            <br><strong>Personalización, higiene y confianza</strong> en cada cita.
+          </div>
+          <div class="pill-row">
+            <span class="pill">✨ Experiencia cuidada</span>
+            <span class="pill">🧼 Higiene & seguridad</span>
+            <span class="pill">💗 Estilo a tu medida</span>
+          </div>
+        </div>
+
+        <div class="services-tease">
+          <div class="tease-head">
+            <p class="kicker" style="margin:0;">Desliza para descubrir</p>
+            <h3 class="tease-title" id="teaseTitle">Servicios principales</h3>
+          </div>
+
+          <div class="grid-3">
+            <div class="card">
+              <h3>Manicura</h3>
+              <p>Acabado limpio, brillante y duradero.</p>
+            </div>
+            <div class="card">
+              <h3>Pedicura</h3>
+              <p>Cuidado completo para pies suaves y bonitos.</p>
+            </div>
+            <div class="card">
+              <h3>Nail Art</h3>
+              <p>Detalles personalizados con estética cute.</p>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="cta" href="#servicios">Ver servicios</a>
+            <a class="cta" href="#reservar" style="background:linear-gradient(135deg, rgba(174,230,255,.90), rgba(205,180,255,.85), rgba(255,179,218,.85));">Reservar cita <small>↗</small></a>
+          </div>
+          <p class="tiny" style="margin:0;">Tip: el flip sucede mientras haces scroll en esta primera parte.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>Servicios</h2>
+        <p class="kicker">Elige el mood, yo me encargo del detalle.</p>
+      </div>
+
+      <div class="grid-3 reveal">
+        <details>
+          <summary>Manicura clásica <span class="chev">+</span></summary>
+          <div class="details-body">
+            Limpieza, forma y acabado natural. Ideal para un look cuidado y sencillo.
+            <div class="price">⏱ 45 min · 💶 desde 15€</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>Manicura + esmaltado semipermanente <span class="chev">+</span></summary>
+          <div class="details-body">
+            Brillo y duración. Preparación de uña + color. Opcional refuerzo suave.
+            <div class="price">⏱ 60–75 min · 💶 desde 25€</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>Uñas de gel (estructura) <span class="chev">+</span></summary>
+          <div class="details-body">
+            Construcción/estructura con gel para mayor resistencia y acabado pulido.
+            <div class="price">⏱ 90–120 min · 💶 desde 35€</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>Nail Art (personalizado) <span class="chev">+</span></summary>
+          <div class="details-body">
+            Diseños a medida: cute, minimal, detalles, stickers, pedrería suave.
+            <div class="price">✨ extra según diseño · 💶 desde +5€</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>Pedicura completa <span class="chev">+</span></summary>
+          <div class="details-body">
+            Cuidado de pies + exfoliación suave + hidratación. Opción color.
+            <div class="price">⏱ 60–75 min · 💶 desde 25€</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>Combo (manicura + pedicura) <span class="chev">+</span></summary>
+          <div class="details-body">
+            El pack perfecto para salir con todo resuelto. Pregunta por disponibilidad.
+            <div class="price">⏱ 2–3 h · 💶 desde 45€</div>
+          </div>
+        </details>
+      </div>
+
+      <p class="tiny" style="margin-top:14px;">
+        Precios orientativos para el TFM. Ajusta importes/tiempos según tu realidad.
+      </p>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section id="galeria">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>Galería</h2>
+        <p class="kicker">Diseños reales. Cero filtros raros. Mucho brillo.</p>
+      </div>
+
+      <div class="masonry reveal">
+        <div class="shot"><img src="assets/images/nails-01.jpg" alt="Diseño de uñas Mimas Iconic 01"></div>
+        <div class="shot"><img src="assets/images/nails-02.jpg" alt="Diseño de uñas Mimas Iconic 02"></div>
+        <div class="shot"><img src="assets/images/nails-03.jpg" alt="Diseño de uñas Mimas Iconic 03"></div>
+        <div class="shot"><img src="assets/images/nails-04.jpg" alt="Diseño de uñas Mimas Iconic 04"></div>
+        <div class="shot"><img src="assets/images/nails-05.jpg" alt="Diseño de uñas Mimas Iconic 05"></div>
+        <div class="shot"><img src="assets/images/nails-06.jpg" alt="Diseño de uñas Mimas Iconic 06"></div>
+      </div>
+
+      <p class="tiny" style="margin-top:14px;">
+        Consejo: usa fotos en vertical y con buena luz. Si alguna pesa mucho, comprímela (ideal &lt; 800KB).
+      </p>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section id="sobre">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>Sobre mí</h2>
+        <p class="kicker">Una cita bonita empieza por una experiencia segura.</p>
+      </div>
+
+      <div class="two-col reveal">
+        <div class="card">
+          <p style="margin:0; font-weight:800; color: rgba(31,27,46,.80);">
+            Soy Mimas. Trabajo la manicura y pedicura con un enfoque muy claro: <strong>cuidado, higiene, seguridad y personalización</strong>.
+            Mi objetivo es que salgas con uñas preciosas… y con la sensación de “ok, esto fue para mí”.
+          </p>
+          <div style="height:12px;"></div>
+          <div class="badge">🧼 Protocolos de higiene</div>
+          <div style="height:10px;"></div>
+          <div class="badge">💬 Trato cercano y asesoría</div>
+          <div style="height:10px;"></div>
+          <div class="badge">✨ Estilo cute-minimal adaptable</div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 10px;">Qué puedes esperar</h3>
+          <ul style="margin:0; padding-left: 18px; color: rgba(31,27,46,.78); font-weight:800;">
+            <li>Recomendación de forma/color según tu estilo</li>
+            <li>Ritmo tranquilo y atención al detalle</li>
+            <li>Comunicación clara antes y después de la cita</li>
+            <li>Ambiente cuidado y experiencia agradable</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section id="resenas">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>Reseñas</h2>
+        <p class="kicker">Prueba social (puedes usar ejemplos ficticios para el TFM).</p>
+      </div>
+
+      <div class="reviews reveal">
+        <div class="card">
+          <div class="quote">“Me explicó todo, súper higiénico y el resultado quedó impecable. Repetiré fijo.”</div>
+          <div class="who">Laura · Valencia</div>
+        </div>
+        <div class="card">
+          <div class="quote">“Por fin alguien que personaliza de verdad. Me clavó el estilo que quería.”</div>
+          <div class="who">Sara · Ruzafa</div>
+        </div>
+        <div class="card">
+          <div class="quote">“Experiencia cuidada, cero prisas, y el acabado dura muchísimo. 10/10.”</div>
+          <div class="who">Ana · Campanar</div>
+        </div>
+      </div>
+
+      <p class="tiny" style="margin-top:14px;">
+        Para el TFM puedes indicar “testimonios de ejemplo” y luego sustituir por reseñas reales cuando las tengas.
+      </p>
+    </div>
+  </section>
+
+  <!-- RESERVAR -->
+  <section id="reservar">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>Reservar cita</h2>
+        <p class="kicker">Rápido, claro, sin dramas.</p>
+      </div>
+
+      <div class="booking reveal">
+        <div class="card">
+          <h3 style="margin:0 0 8px;">Reserva online</h3>
+          <p style="margin:0; color: var(--muted); font-weight:800;">
+            Conecta este botón a tu sistema real (Calendly / Fresha / Treatwell / WhatsApp).
+          </p>
+          <div style="height:14px;"></div>
+
+          <!-- Cambia este enlace por tu WhatsApp o Calendly -->
+          <a class="cta" href="https://wa.me/34XXXXXXXXX?text=Hola%20Mimas%20Iconic%20%E2%9C%A8%20Quiero%20reservar%20una%20cita" target="_blank" rel="noopener">
+            Reservar por WhatsApp <small>↗</small>
+          </a>
+
+          <div style="height:12px;"></div>
+          <p class="tiny" style="margin:0;">
+            Sustituye 34XXXXXXXXX por tu número real. Si prefieres Calendly, pega el enlace aquí.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 12px;">Cómo funciona</h3>
+          <div class="steps">
+            <div class="step">
+              <div class="num">1</div>
+              <div><strong>Elige servicio</strong><div class="tiny">Manicura, pedicura, gel, nail art.</div></div>
+            </div>
+            <div class="step">
+              <div class="num">2</div>
+              <div><strong>Selecciona día y hora</strong><div class="tiny">Te confirmo disponibilidad y detalles.</div></div>
+            </div>
+            <div class="step">
+              <div class="num">3</div>
+              <div><strong>Checklist antes de venir</strong><div class="tiny">Llegar 5 min antes y manos limpias.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal" style="margin-top:16px;">
+        <h3 style="margin:0 0 10px;">Email marketing (para el TFM)</h3>
+        <p style="margin:0; color: rgba(31,27,46,.78); font-weight:800;">
+          Este proyecto propone crear una base de datos (con consentimiento) para enviar recordatorios de cita,
+          cuidados post-servicio, y campañas de fidelización (ej. “retoca tu gel en 3 semanas”).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ + CONTACTO -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>Contacto</h2>
+        <p class="kicker">Tu próxima cita empieza con un “hola”.</p>
+      </div>
+
+      <div class="two-col reveal">
+        <div class="card">
+          <h3 style="margin:0 0 10px;">Datos</h3>
+          <p style="margin:0; font-weight:800; color: rgba(31,27,46,.78);">
+            📍 Valencia, España<br>
+            📩 Email: mimasiconic@email.com<br>
+            📱 Instagram: @mimasiconic
+          </p>
+          <div style="height:12px;"></div>
+          <p class="tiny" style="margin:0;">
