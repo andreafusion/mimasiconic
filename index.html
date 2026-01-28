@@ -1,781 +1,658 @@
 <!doctype html>
 <html lang="es">
-  
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mimas Iconic | Manicura & Pedicura en Valencia</title>
-  <meta name="description" content="Mimas Iconic: manicura, pedicura y nail art con un estilo cute-minimal, experiencia cuidada, segura y personalizada en Valencia." />
-  <meta name="theme-color" content="#f7d7ff" />
+  <meta name="description" content="Manicura y pedicura en Valencia con un toque cute-minimal. Personalización, higiene y confianza en cada cita." />
 
-  <!-- Fonts -->
+  <!-- Bootstrap (base layout como Emily) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Tipografías: cute, limpias -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg: #fbf7ff;
-      --ink: #1f1b2e;
-      --muted: rgba(31,27,46,.70);
+      --bg: #fbfafc;
+      --bg-2: #f6f1f7;
+      --text: #121015;
+      --muted: #6c6572;
+      --card: #ffffff;
+      --border: rgba(18,16,21,.10);
 
-      --pink: #ffb3da;
-      --lilac: #cdb4ff;
-      --blue: #aee6ff;
-      --mint: #caffbf;
+      /* acento verde clarito */
+      --accent: #BEECCF;
+      --accent-2: #8fe0b6;
 
-      --card: rgba(255,255,255,.72);
-      --stroke: rgba(31,27,46,.10);
-      --shadow: 0 18px 50px rgba(31,27,46,.10);
-      --radius: 22px;
+      /* sombras suaves */
+      --shadow: 0 18px 45px rgba(18,16,21,.08);
 
-      --maxw: 1120px;
+      --radius: 18px;
     }
 
-    *{ box-sizing: border-box; }
-    html{ scroll-behavior: smooth; }
+    html { scroll-behavior: auto; } /* Lenis controla el scroll */
     body{
-      margin: 0;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,179,218,.35), transparent 60%),
-                  radial-gradient(1200px 600px at 90% 20%, rgba(174,230,255,.30), transparent 55%),
-                  radial-gradient(900px 500px at 60% 95%, rgba(205,180,255,.25), transparent 55%),
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(900px 600px at 10% 10%, rgba(190,236,207,.35), transparent 60%),
+                  radial-gradient(900px 600px at 90% 20%, rgba(255,210,235,.25), transparent 60%),
                   var(--bg);
-      color: var(--ink);
-      font-family: "Quicksand", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height: 1.45;
+      color: var(--text);
       overflow-x: hidden;
     }
 
+    /* Links */
     a{ color: inherit; text-decoration: none; }
-    .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+    a:hover{ opacity: .92; }
 
-    /* Top nav */
-    header{
+    /* Navbar */
+    .nav-wrap{
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(12px);
-      background: rgba(251,247,255,.70);
-      border-bottom: 1px solid var(--stroke);
-    }
-    .nav{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 0;
-      gap: 14px;
+      backdrop-filter: blur(10px);
+      background: rgba(251,250,252,.70);
+      border-bottom: 1px solid var(--border);
     }
     .brand{
-      display: flex; align-items: center; gap: 10px;
-      font-weight: 800;
+      display:flex; align-items:center; gap:.65rem;
+      font-weight: 600;
       letter-spacing: .2px;
     }
-    .logo-dot{
+    .brand-badge{
       width: 12px; height: 12px; border-radius: 999px;
-      background: linear-gradient(135deg, var(--pink), var(--lilac), var(--blue));
-      box-shadow: 0 0 0 6px rgba(205,180,255,.18);
+      background: var(--accent-2);
+      box-shadow: 0 0 0 6px rgba(190,236,207,.35);
     }
-    nav ul{
-      display: flex; gap: 14px; list-style: none; padding: 0; margin: 0;
-      align-items: center;
-      flex-wrap: wrap;
+    .nav-link{
+      color: var(--muted);
+      font-weight: 500;
     }
-    nav a{
-      font-weight: 700;
-      font-size: 14px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      color: rgba(31,27,46,.82);
-      border: 1px solid transparent;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-    }
-    nav a:hover{
-      background: rgba(255,255,255,.75);
-      border-color: var(--stroke);
-      transform: translateY(-1px);
-    }
-    .cta{
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, rgba(255,179,218,.95), rgba(205,180,255,.85), rgba(174,230,255,.85));
-      border: 1px solid rgba(31,27,46,.10);
-      box-shadow: 0 10px 26px rgba(31,27,46,.12);
-      font-weight: 800;
-      font-size: 14px;
-      white-space: nowrap;
-    }
-    .cta small{ font-weight: 700; opacity: .85; }
+    .nav-link:hover{ color: var(--text); }
 
-    /* Sections */
-    section{ padding: 80px 0; }
-    .section-title{
-      display: flex; align-items: baseline; justify-content: space-between;
-      gap: 18px; margin-bottom: 18px;
+    .btn-soft{
+      border-radius: 999px;
+      padding: .7rem 1.05rem;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.70);
+      box-shadow: 0 10px 25px rgba(18,16,21,.06);
     }
-    h2{
-      margin: 0;
-      font-family: "Fraunces", serif;
-      letter-spacing: .2px;
-      font-size: clamp(26px, 3vw, 38px);
+    .btn-accent{
+      border-radius: 999px;
+      padding: .75rem 1.1rem;
+      border: 1px solid rgba(18,16,21,.10);
+      background: linear-gradient(180deg, var(--accent), rgba(190,236,207,.55));
+      box-shadow: 0 16px 35px rgba(18,16,21,.10);
+      font-weight: 600;
     }
-    .kicker{ color: var(--muted); font-weight: 700; }
 
     /* Hero */
     .hero{
-      padding: 36px 0 10px;
+      padding: clamp(2.2rem, 5vw, 4.2rem) 0 2.2rem;
     }
     .hero-stage{
-      position: relative;
-      border-radius: var(--radius);
-      border: 1px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.55));
+      border-radius: calc(var(--radius) + 10px);
+      background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.40));
+      border: 1px solid var(--border);
       box-shadow: var(--shadow);
-      overflow: hidden;
-      min-height: 78vh;
-    }
-    .hero-grid{
-      display: grid;
-      grid-template-columns: 1.2fr 1fr 1.2fr;
-      gap: 18px;
-      padding: 34px 26px 18px;
-      align-items: center;
-    }
-    .hero-word{
-      font-family: "Fraunces", serif;
-      font-weight: 800;
-      letter-spacing: .5px;
-      font-size: clamp(38px, 6vw, 70px);
-      line-height: .92;
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity .25s ease, transform .25s ease;
-    }
-    .hero-word.left{ text-align: right; }
-    .hero-word.right{ text-align: left; }
-
-    /* 3D flip card */
-    .flip-wrap{
-      display: grid;
-      place-items: center;
-      perspective: 1200px;
-    }
-    .flip-card{
-      width: min(320px, 66vw);
-      aspect-ratio: 3/4;
+      padding: clamp(1.25rem, 3vw, 2rem);
       position: relative;
-      transform-style: preserve-3d;
-      will-change: transform;
-      border-radius: 26px;
-      box-shadow: 0 20px 60px rgba(31,27,46,.18);
-      border: 1px solid rgba(31,27,46,.10);
       overflow: hidden;
-      background: rgba(255,255,255,.55);
-    }
-    .face{
-      position: absolute;
-      inset: 0;
-      backface-visibility: hidden;
-    }
-    .face img{
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: saturate(1.05) contrast(1.02);
-    }
-    .face.back{
-      transform: rotateY(180deg);
     }
     .halo{
-      position: absolute;
-      inset: -40px -40px auto auto;
-      width: 220px; height: 220px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,179,218,.55), transparent 55%),
-                  radial-gradient(circle at 60% 60%, rgba(174,230,255,.45), transparent 55%),
-                  radial-gradient(circle at 50% 50%, rgba(205,180,255,.35), transparent 55%);
-      filter: blur(4px);
-      transform: rotate(18deg);
+      position:absolute;
+      inset: -120px -80px auto auto;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(190,236,207,.85), rgba(190,236,207,.0) 62%);
+      filter: blur(2px);
       pointer-events: none;
     }
 
-    .hero-bottom{
-      padding: 0 26px 26px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      align-items: end;
-    }
-    .hero-copy{
-      color: rgba(31,27,46,.78);
+    .hero-word{
+      font-family: Fraunces, serif;
       font-weight: 700;
-      max-width: 48ch;
+      font-size: clamp(2.2rem, 6vw, 5rem);
+      line-height: .95;
+      letter-spacing: -.02em;
+      color: rgba(18,16,21,.86);
     }
+    .hero-sub{
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.55;
+    }
+
     .pill-row{
-      display:flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end;
+      display:flex; flex-wrap: wrap; gap: .5rem;
+      margin-top: .9rem;
     }
     .pill{
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--stroke);
+      border: 1px solid var(--border);
       background: rgba(255,255,255,.70);
-      font-weight: 800;
-      font-size: 13px;
+      padding: .45rem .7rem;
+      border-radius: 999px;
+      color: rgba(18,16,21,.82);
+      font-size: .92rem;
     }
 
-    /* Scroll-driven transitions */
-    .services-tease{
-      margin-top: 18px;
-      padding: 20px 22px;
-      border-top: 1px dashed rgba(31,27,46,.18);
-      display: grid;
-      gap: 14px;
+    .hint{
+      margin-top: 1.1rem;
+      display:flex; align-items:center; gap:.55rem;
+      color: rgba(108,101,114,.92);
+      font-size: .95rem;
     }
-    .tease-head{
-      display:flex; align-items: baseline; justify-content: space-between; gap: 12px;
-    }
-    .tease-title{
-      font-family: "Fraunces", serif;
-      font-weight: 800;
-      margin: 0;
-      font-size: 22px;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity .25s ease, transform .25s ease;
-    }
-    .tease-title.show{
-      opacity: 1;
-      transform: translateY(0);
+    .hint-dot{
+      width: 9px; height: 9px; border-radius: 999px;
+      background: rgba(190,236,207,.9);
+      box-shadow: 0 0 0 7px rgba(190,236,207,.25);
     }
 
-    /* Cards + details */
-    .grid-3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .card{
+    /* Flip Card (front/back real) */
+    .flip-wrap{ perspective: 1200px; }
+    .flip-card{
+      position: relative;
+      width: min(420px, 86vw);
+      aspect-ratio: 3 / 4;
       border-radius: var(--radius);
-      border: 1px solid var(--stroke);
-      background: var(--card);
-      box-shadow: 0 16px 40px rgba(31,27,46,.08);
-      padding: 16px;
+      overflow: hidden;
+
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+
+      box-shadow: 0 20px 55px rgba(18,16,21,.14);
+      border: 1px solid rgba(18,16,21,.12);
+
+      will-change: transform;
     }
-    .card h3{
-      margin: 0 0 6px;
-      font-size: 16px;
-      font-weight: 900;
+    .flip-card .face{
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform-style: preserve-3d;
     }
-    .card p{ margin: 0; color: var(--muted); font-weight: 700; }
-    details{
-      border-radius: 18px;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.70);
-      padding: 12px 14px;
+    .flip-card .face img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display:block;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
-    summary{
-      cursor: pointer;
-      font-weight: 900;
-      list-style: none;
-      display:flex; align-items:center; justify-content: space-between;
-      gap: 12px;
+    .flip-card .front{ transform: rotateY(0deg) translateZ(1px); }
+    .flip-card .back{ transform: rotateY(180deg); }
+
+    /* Secciones */
+    section.section{
+      padding: clamp(2.4rem, 5vw, 4rem) 0;
     }
-    summary::-webkit-details-marker{ display:none; }
-    .chev{
-      width: 28px; height: 28px;
-      display:grid; place-items:center;
-      border-radius: 999px;
-      background: rgba(205,180,255,.22);
-      border: 1px solid var(--stroke);
-      transition: transform .2s ease;
-      font-weight: 900;
-    }
-    details[open] .chev{ transform: rotate(45deg); }
-    .details-body{
-      margin-top: 10px;
-      color: rgba(31,27,46,.82);
+    .section-title{
+      font-family: Fraunces, serif;
       font-weight: 700;
+      letter-spacing: -.01em;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      margin-bottom: .6rem;
     }
-    .price{
-      display:inline-flex;
-      gap: 8px;
-      align-items: center;
-      margin-top: 10px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--stroke);
-      background: rgba(174,230,255,.18);
-      font-weight: 900;
-      font-size: 13px;
+    .section-lead{
+      color: var(--muted);
+      margin-bottom: 1.35rem;
+      max-width: 60ch;
+    }
+
+    /* Cards */
+    .soft-card{
+      background: rgba(255,255,255,.75);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 35px rgba(18,16,21,.06);
+    }
+    .service-card{
+      padding: 1.1rem 1.05rem;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .service-card:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 22px 55px rgba(18,16,21,.10);
+    }
+    .service-name{
+      font-weight: 600;
+      margin-bottom: .2rem;
+    }
+    .service-meta{
+      color: var(--muted);
+      font-size: .95rem;
     }
 
     /* Gallery */
-    .masonry{
-      columns: 3 260px;
-      column-gap: 14px;
-    }
-    .shot{
-      break-inside: avoid;
-      margin: 0 0 14px;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.72);
-      box-shadow: 0 14px 34px rgba(31,27,46,.10);
-    }
-    .shot img{ width:100%; display:block; }
-
-    /* About */
-    .two-col{
+    .gallery-grid{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 16px;
-      align-items: start;
+      grid-template-columns: repeat(12, 1fr);
+      gap: .9rem;
     }
-    .badge{
-      display:inline-flex;
-      gap: 10px;
-      align-items: center;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.70);
-      font-weight: 800;
-      color: rgba(31,27,46,.86);
+    .g-item{
+      grid-column: span 6;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(18,16,21,.10);
+      box-shadow: 0 16px 45px rgba(18,16,21,.08);
+      transform: translateY(10px);
+      opacity: 0;
     }
+    @media (min-width: 992px){
+      .g-item{ grid-column: span 4; }
+      .g-item.big{ grid-column: span 8; }
+    }
+    .g-item img{
+      width:100%; height: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display:block;
+      transition: transform .7s cubic-bezier(.2,.8,.2,1);
+    }
+    .g-item:hover img{ transform: scale(1.05); }
 
     /* Reviews */
-    .reviews{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
     .quote{
-      font-weight: 800;
-      color: rgba(31,27,46,.80);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(18,16,21,.86);
     }
     .who{
-      margin-top: 10px;
-      font-weight: 900;
-      color: rgba(31,27,46,.72);
+      color: var(--muted);
+      font-size: .95rem;
+      margin-top: .8rem;
     }
 
-    /* Booking */
-    .booking{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      align-items: start;
-    }
-    .steps{
-      display:grid;
-      gap: 12px;
-    }
-    .step{
-      display:flex;
-      gap: 12px;
-      align-items:flex-start;
-    }
-    .num{
-      width: 34px; height: 34px;
-      border-radius: 12px;
-      display:grid; place-items:center;
-      font-weight: 900;
-      background: rgba(255,179,218,.28);
-      border: 1px solid var(--stroke);
-      flex: 0 0 auto;
-    }
-
-    footer{
-      padding: 40px 0 60px;
-      color: rgba(31,27,46,.70);
-      font-weight: 800;
-    }
-    .tiny{ font-size: 12px; color: rgba(31,27,46,.60); }
-
-    /* Reveal */
+    /* Reveal utility */
     .reveal{
       opacity: 0;
-      transform: translateY(10px);
-      transition: opacity .6s ease, transform .6s ease;
-    }
-    .reveal.show{
-      opacity: 1;
-      transform: translateY(0);
+      transform: translateY(14px);
     }
 
-    /* Responsive */
-    @media (max-width: 980px){
-      .hero-grid{ grid-template-columns: 1fr; text-align:center; }
-      .hero-word.left, .hero-word.right{ text-align:center; }
-      .hero-bottom{ grid-template-columns: 1fr; }
-      .pill-row{ justify-content:center; }
-      .grid-3{ grid-template-columns: 1fr; }
-      .two-col{ grid-template-columns: 1fr; }
-      .reviews{ grid-template-columns: 1fr; }
-      .booking{ grid-template-columns: 1fr; }
+    /* Footer */
+    footer{
+      padding: 2.5rem 0 3.2rem;
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,.35);
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior: auto !important; }
     }
   </style>
-  <style>
-/* ===== HERO FLIP CARD (front/back real) ===== */
-.flip-wrap{ perspective: 1200px; }
-
-.flip-card{
-  position: relative;
-  width: min(420px, 86vw);
-  aspect-ratio: 3 / 4;
-  border-radius: 18px;
-  overflow: hidden;
-
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-.flip-card .face{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-
-  transform-style: preserve-3d;
-}
-
-.flip-card .face img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-/* front se queda normal */
-.flip-card .front{ transform: rotateY(0deg) translateZ(1px); }
-
-/* back va girada 180 para que “aparezca” al girar la card */
-.flip-card .back{ transform: rotateY(180deg); }
-</style>
-
-
 </head>
 
 <body>
-<header>
-  <div class="wrap">
-    <div class="nav">
-      <div class="brand">
-        <span class="logo-dot" aria-hidden="true"></span>
+  <!-- NAV -->
+  <div class="nav-wrap">
+    <nav class="container py-3 d-flex align-items-center justify-content-between">
+      <a class="brand" href="#inicio">
+        <span class="brand-badge" aria-hidden="true"></span>
         <span>Mimas Iconic</span>
+      </a>
+
+      <div class="d-none d-md-flex gap-3 align-items-center">
+        <a class="nav-link" href="#servicios">Servicios</a>
+        <a class="nav-link" href="#galeria">Galería</a>
+        <a class="nav-link" href="#sobre">Sobre mí</a>
+        <a class="nav-link" href="#resenas">Reseñas</a>
+        <a class="btn-accent" href="#reservar">Reservar ↗</a>
       </div>
 
-      <nav aria-label="Menú">
-        <ul>
-          <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#galeria">Galería</a></li>
-          <li><a href="#sobre">Sobre mí</a></li>
-          <li><a href="#resenas">Reseñas</a></li>
-          <li><a href="#reservar" class="cta">Reservar <small>↗</small></a></li>
-        </ul>
-      </nav>
-    </div>
+      <div class="d-md-none">
+        <a class="btn-soft" href="#reservar">Reservar ↗</a>
+      </div>
+    </nav>
   </div>
-</header>
 
-<main>
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-stage" id="inicio">
-        <div class="halo" aria-hidden="true"></div>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-stage" id="inicio">
+          <div class="halo" aria-hidden="true"></div>
 
-        <div class="hero-grid">
-          <div class="hero-word left" id="wordLeft">Mimas</div>
+          <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+              <div class="hero-word reveal">Mimas</div>
+              <p class="hero-sub reveal mt-3">
+                Manicura y pedicura en Valencia con un toque cute-minimal.<br>
+                <strong>Personalización, higiene y confianza</strong> en cada cita.
+              </p>
 
-          <div class="flip-wrap">
-            <div class="flip-card" id="flipCard">
-              <div class="face front">
-                <img src="assets/images/mimasperfil.png" alt="Foto de Mimas Iconic" />
+              <div class="pill-row reveal">
+                <span class="pill">✨ Experiencia cuidada</span>
+                <span class="pill">🧼 Higiene & seguridad</span>
+                <span class="pill">💅 Estilo a tu medida</span>
               </div>
-              <div class="face back">
-                <img src="assets/images/nails-01.png" alt="Detalle de manicura Mimas Iconic" />
+
+              <div class="d-flex gap-2 mt-4 reveal">
+                <a class="btn-accent" href="#servicios">Ver servicios</a>
+                <a class="btn-soft" href="#reservar">Reservar cita ↗</a>
+              </div>
+
+              <div class="hint reveal">
+                <span class="hint-dot" aria-hidden="true"></span>
+                <span>Desliza para descubrir · el flip sucede mientras haces scroll.</span>
+              </div>
+            </div>
+
+            <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
+              <div class="flip-wrap">
+                <div class="flip-card" id="flipCard" aria-label="Imagen principal con efecto flip al hacer scroll">
+                  <div class="face front">
+                    <!-- Tu imagen principal -->
+                    <img src="assets/images/mimasperfil.png" alt="Foto de Mimas Iconic" />
+                  </div>
+                  <div class="face back">
+                    <!-- Tu imagen de detalle uñas -->
+                    <img src="assets/images/nails-01.png" alt="Detalle de manicura Mimas Iconic" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="hero-word text-end reveal" style="opacity:.9;">Iconic</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS PRINCIPALES -->
+    <section class="section">
+      <div class="container">
+        <div class="row align-items-end g-3">
+          <div class="col-lg-7">
+            <h2 class="section-title reveal">Servicios principales</h2>
+            <p class="section-lead reveal">Elige el mood, yo me encargo del detalle.</p>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+          <div class="col-md-4">
+            <div class="soft-card service-card reveal">
+              <div class="service-name">Manicura</div>
+              <div class="service-meta">Acabado limpio, brillante y duradero.</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="soft-card service-card reveal">
+              <div class="service-name">Pedicura</div>
+              <div class="service-meta">Cuidado completo para pies suaves y bonitos.</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="soft-card service-card reveal">
+              <div class="service-name">Nail Art</div>
+              <div class="service-meta">Detalles personalizados con estética cute.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS (detalle) -->
+    <section class="section" id="servicios">
+      <div class="container">
+        <h2 class="section-title reveal">Servicios</h2>
+        <p class="section-lead reveal">Sin prisas. Sin sorpresas. Solo buen gusto y manos cuidadas.</p>
+
+        <div class="row g-3">
+          <div class="col-lg-6">
+            <div class="soft-card p-3 reveal">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <div class="service-name">Manicura clásica</div>
+                  <div class="service-meta">Limpieza, forma y acabado natural. Ideal para un look cuidado y sencillo.</div>
+                </div>
+                <span class="pill">⏱ 45 min · desde 15€</span>
               </div>
             </div>
           </div>
 
-          <div class="hero-word right" id="wordRight">Iconic</div>
-        </div>
-
-        <div class="hero-bottom">
-          <div class="hero-copy">
-            Manicura y pedicura en Valencia con un toque cute-minimal.
-            <br><strong>Personalización, higiene y confianza</strong> en cada cita.
-          </div>
-          <div class="pill-row">
-            <span class="pill">✨ Experiencia cuidada</span>
-            <span class="pill">🧼 Higiene & seguridad</span>
-            <span class="pill">💗 Estilo a tu medida</span>
-          </div>
-        </div>
-
-        <div class="services-tease">
-          <div class="tease-head">
-            <p class="kicker" style="margin:0;">Desliza para descubrir</p>
-            <h3 class="tease-title" id="teaseTitle">Servicios principales</h3>
-          </div>
-
-          <div class="grid-3">
-            <div class="card">
-              <h3>Manicura</h3>
-              <p>Acabado limpio, brillante y duradero.</p>
-            </div>
-            <div class="card">
-              <h3>Pedicura</h3>
-              <p>Cuidado completo para pies suaves y bonitos.</p>
-            </div>
-            <div class="card">
-              <h3>Nail Art</h3>
-              <p>Detalles personalizados con estética cute.</p>
+          <div class="col-lg-6">
+            <div class="soft-card p-3 reveal">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <div class="service-name">Manicura + semipermanente</div>
+                  <div class="service-meta">Preparación de uña + color. Opcional refuerzo suave.</div>
+                </div>
+                <span class="pill">⏱ 60–75 min · desde 25€</span>
+              </div>
             </div>
           </div>
 
-          <div style="display:flex; gap:12px; flex-wrap:wrap;">
-            <a class="cta" href="#servicios">Ver servicios</a>
-            <a class="cta" href="#reservar" style="background:linear-gradient(135deg, rgba(174,230,255,.90), rgba(205,180,255,.85), rgba(255,179,218,.85));">Reservar cita <small>↗</small></a>
-          </div>
-          <p class="tiny" style="margin:0;">Tip: el flip sucede mientras haces scroll en esta primera parte.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICIOS -->
-  <section id="servicios">
-    <div class="wrap">
-      <div class="section-title">
-        <h2>Servicios</h2>
-        <p class="kicker">Elige el mood, yo me encargo del detalle.</p>
-      </div>
-
-      <div class="grid-3 reveal">
-        <details>
-          <summary>Manicura clásica <span class="chev">+</span></summary>
-          <div class="details-body">
-            Limpieza, forma y acabado natural. Ideal para un look cuidado y sencillo.
-            <div class="price">⏱ 45 min · 💶 desde 15€</div>
-          </div>
-        </details>
-
-        <details>
-          <summary>Manicura + esmaltado semipermanente <span class="chev">+</span></summary>
-          <div class="details-body">
-            Brillo y duración. Preparación de uña + color. Opcional refuerzo suave.
-            <div class="price">⏱ 60–75 min · 💶 desde 25€</div>
-          </div>
-        </details>
-
-        <details>
-          <summary>Uñas de gel (estructura) <span class="chev">+</span></summary>
-          <div class="details-body">
-            Construcción/estructura con gel para mayor resistencia y acabado pulido.
-            <div class="price">⏱ 90–120 min · 💶 desde 35€</div>
-          </div>
-        </details>
-
-        <details>
-          <summary>Nail Art (personalizado) <span class="chev">+</span></summary>
-          <div class="details-body">
-            Diseños a medida: cute, minimal, detalles, stickers, pedrería suave.
-            <div class="price">✨ extra según diseño · 💶 desde +5€</div>
-          </div>
-        </details>
-
-        <details>
-          <summary>Pedicura completa <span class="chev">+</span></summary>
-          <div class="details-body">
-            Cuidado de pies + exfoliación suave + hidratación. Opción color.
-            <div class="price">⏱ 60–75 min · 💶 desde 25€</div>
-          </div>
-        </details>
-
-        <details>
-          <summary>Combo (manicura + pedicura) <span class="chev">+</span></summary>
-          <div class="details-body">
-            El pack perfecto para salir con todo resuelto. Pregunta por disponibilidad.
-            <div class="price">⏱ 2–3 h · 💶 desde 45€</div>
-          </div>
-        </details>
-      </div>
-
-      <p class="tiny" style="margin-top:14px;">
-        Precios orientativos para el TFM. Ajusta importes/tiempos según tu realidad.
-      </p>
-    </div>
-  </section>
-
-  <!-- GALERÍA -->
-  <section id="galeria">
-    <div class="wrap">
-      <div class="section-title">
-        <h2>Galería</h2>
-        <p class="kicker">Diseños reales. Cero filtros raros. Mucho brillo.</p>
-      </div>
-
-      <div class="masonry reveal">
-        <div class="shot"><img src="assets/images/nails-01.jpg" alt="Diseño de uñas Mimas Iconic 01"></div>
-        <div class="shot"><img src="assets/images/nails-02.jpg" alt="Diseño de uñas Mimas Iconic 02"></div>
-        <div class="shot"><img src="assets/images/nails-03.jpg" alt="Diseño de uñas Mimas Iconic 03"></div>
-        <div class="shot"><img src="assets/images/nails-04.jpg" alt="Diseño de uñas Mimas Iconic 04"></div>
-        <div class="shot"><img src="assets/images/nails-05.jpg" alt="Diseño de uñas Mimas Iconic 05"></div>
-        <div class="shot"><img src="assets/images/nails-06.jpg" alt="Diseño de uñas Mimas Iconic 06"></div>
-      </div>
-
-      <p class="tiny" style="margin-top:14px;">
-        Consejo: usa fotos en vertical y con buena luz. Si alguna pesa mucho, comprímela (ideal &lt; 800KB).
-      </p>
-    </div>
-  </section>
-
-  <!-- SOBRE MÍ -->
-  <section id="sobre">
-    <div class="wrap">
-      <div class="section-title">
-        <h2>Sobre mí</h2>
-        <p class="kicker">Una cita bonita empieza por una experiencia segura.</p>
-      </div>
-
-      <div class="two-col reveal">
-        <div class="card">
-          <p style="margin:0; font-weight:800; color: rgba(31,27,46,.80);">
-            Soy Mimas. Trabajo la manicura y pedicura con un enfoque muy claro: <strong>cuidado, higiene, seguridad y personalización</strong>.
-            Mi objetivo es que salgas con uñas preciosas… y con la sensación de “ok, esto fue para mí”.
-          </p>
-          <div style="height:12px;"></div>
-          <div class="badge">🧼 Protocolos de higiene</div>
-          <div style="height:10px;"></div>
-          <div class="badge">💬 Trato cercano y asesoría</div>
-          <div style="height:10px;"></div>
-          <div class="badge">✨ Estilo cute-minimal adaptable</div>
-        </div>
-
-        <div class="card">
-          <h3 style="margin:0 0 10px;">Qué puedes esperar</h3>
-          <ul style="margin:0; padding-left: 18px; color: rgba(31,27,46,.78); font-weight:800;">
-            <li>Recomendación de forma/color según tu estilo</li>
-            <li>Ritmo tranquilo y atención al detalle</li>
-            <li>Comunicación clara antes y después de la cita</li>
-            <li>Ambiente cuidado y experiencia agradable</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- RESEÑAS -->
-  <section id="resenas">
-    <div class="wrap">
-      <div class="section-title">
-        <h2>Reseñas</h2>
-        <p class="kicker">Prueba social (puedes usar ejemplos ficticios para el TFM).</p>
-      </div>
-
-      <div class="reviews reveal">
-        <div class="card">
-          <div class="quote">“Me explicó todo, súper higiénico y el resultado quedó impecable. Repetiré fijo.”</div>
-          <div class="who">Laura · Valencia</div>
-        </div>
-        <div class="card">
-          <div class="quote">“Por fin alguien que personaliza de verdad. Me clavó el estilo que quería.”</div>
-          <div class="who">Sara · Ruzafa</div>
-        </div>
-        <div class="card">
-          <div class="quote">“Experiencia cuidada, cero prisas, y el acabado dura muchísimo. 10/10.”</div>
-          <div class="who">Ana · Campanar</div>
-        </div>
-      </div>
-
-      <p class="tiny" style="margin-top:14px;">
-        Para el TFM puedes indicar “testimonios de ejemplo” y luego sustituir por reseñas reales cuando las tengas.
-      </p>
-    </div>
-  </section>
-
-  <!-- RESERVAR -->
-  <section id="reservar">
-    <div class="wrap">
-      <div class="section-title">
-        <h2>Reservar cita</h2>
-        <p class="kicker">Rápido, claro, sin dramas.</p>
-      </div>
-
-      <div class="booking reveal">
-        <div class="card">
-          <h3 style="margin:0 0 8px;">Reserva online</h3>
-          <p style="margin:0; color: var(--muted); font-weight:800;">
-            Conecta este botón a tu sistema real (Calendly / Fresha / Treatwell / WhatsApp).
-          </p>
-          <div style="height:14px;"></div>
-
-          <!-- Cambia este enlace por tu WhatsApp o Calendly -->
-          <a class="cta" href="https://wa.me/34XXXXXXXXX?text=Hola%20Mimas%20Iconic%20%E2%9C%A8%20Quiero%20reservar%20una%20cita" target="_blank" rel="noopener">
-            Reservar por WhatsApp <small>↗</small>
-          </a>
-
-          <div style="height:12px;"></div>
-          <p class="tiny" style="margin:0;">
-            Sustituye 34XXXXXXXXX por tu número real. Si prefieres Calendly, pega el enlace aquí.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3 style="margin:0 0 12px;">Cómo funciona</h3>
-          <div class="steps">
-            <div class="step">
-              <div class="num">1</div>
-              <div><strong>Elige servicio</strong><div class="tiny">Manicura, pedicura, gel, nail art.</div></div>
+          <div class="col-lg-6">
+            <div class="soft-card p-3 reveal">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <div class="service-name">Uñas de gel (estructura)</div>
+                  <div class="service-meta">Construcción/estructura con gel para mayor resistencia y acabado pulido.</div>
+                </div>
+                <span class="pill">⏱ 90–120 min · desde 35€</span>
+              </div>
             </div>
-            <div class="step">
-              <div class="num">2</div>
-              <div><strong>Selecciona día y hora</strong><div class="tiny">Te confirmo disponibilidad y detalles.</div></div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="soft-card p-3 reveal">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <div class="service-name">Nail Art (personalizado)</div>
+                  <div class="service-meta">Diseños a medida: detalles finos, cute, editorial o lo que te apetezca.</div>
+                </div>
+                <span class="pill">⏱ según diseño</span>
+              </div>
             </div>
-            <div class="step">
-              <div class="num">3</div>
-              <div><strong>Checklist antes de venir</strong><div class="tiny">Llegar 5 min antes y manos limpias.</div></div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 mt-4 reveal">
+          <a class="btn-accent" href="#reservar">Reservar ↗</a>
+          <a class="btn-soft" href="#galeria">Ver galería</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="section" id="galeria">
+      <div class="container">
+        <h2 class="section-title reveal">Galería</h2>
+        <p class="section-lead reveal">Detalles que se notan de cerca. Y también desde Instagram.</p>
+
+        <div class="gallery-grid mt-2">
+          <div class="g-item big">
+            <img src="assets/images/nails-02.png" alt="Diseño uñas Mimas Iconic 02">
+          </div>
+          <div class="g-item">
+            <img src="assets/images/nails-03.png" alt="Diseño uñas Mimas Iconic 03">
+          </div>
+          <div class="g-item">
+            <img src="assets/images/nails-04.png" alt="Diseño uñas Mimas Iconic 04">
+          </div>
+          <div class="g-item">
+            <img src="assets/images/nails-05.png" alt="Diseño uñas Mimas Iconic 05">
+          </div>
+          <div class="g-item big">
+            <img src="assets/images/nails-06.png" alt="Diseño uñas Mimas Iconic 06">
+          </div>
+          <div class="g-item">
+            <img src="assets/images/nails-01.png" alt="Diseño uñas Mimas Iconic 01">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section class="section" id="sobre">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <h2 class="section-title reveal">Sobre mí</h2>
+            <p class="section-lead reveal">
+              Aquí se viene a desconectar y salir con las manos impecables.
+              Soy obsesión bonita por el detalle: forma, acabado, higiene y un resultado que se ve “caro”.
+            </p>
+
+            <div class="soft-card p-3 reveal">
+              <div class="service-name">Mi promesa</div>
+              <div class="service-meta">Citas cuidadas, comunicación clara y un acabado que aguanta la vida real.</div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
+            <div class="soft-card p-2 reveal" style="max-width: 420px;">
+              <img src="assets/images/mimasperfil.png" alt="Retrato Mimas Iconic" style="width:100%; height:auto; border-radius: 14px; display:block;">
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="card reveal" style="margin-top:16px;">
-        <h3 style="margin:0 0 10px;">Email marketing (para el TFM)</h3>
-        <p style="margin:0; color: rgba(31,27,46,.78); font-weight:800;">
-          Este proyecto propone crear una base de datos (con consentimiento) para enviar recordatorios de cita,
-          cuidados post-servicio, y campañas de fidelización (ej. “retoca tu gel en 3 semanas”).
-        </p>
+    <!-- RESEÑAS -->
+    <section class="section" id="resenas">
+      <div class="container">
+        <h2 class="section-title reveal">Reseñas</h2>
+        <p class="section-lead reveal">Lo que dicen cuando se van… y vuelven.</p>
+
+        <div class="row g-3">
+          <div class="col-lg-4">
+            <div class="soft-card p-3 reveal">
+              <div class="quote">“Acabado impecable. Se nota la higiene y el cuidado. Volveré fijo.”</div>
+              <div class="who">Cliente · Valencia</div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="soft-card p-3 reveal">
+              <div class="quote">“El nail art quedó tal cual lo pedí. Cute, limpio, sin recargar.”</div>
+              <div class="who">Cliente · Valencia</div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="soft-card p-3 reveal">
+              <div class="quote">“La mejor sensación: sales con manos bonitas y cero estrés.”</div>
+              <div class="who">Cliente · Valencia</div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <!-- RESERVAR -->
+    <section class="section" id="reservar">
+      <div class="container">
+        <div class="soft-card p-4 reveal" style="background: linear-gradient(180deg, rgba(190,236,207,.45), rgba(255,255,255,.75));">
+          <div class="row align-items-center g-3">
+            <div class="col-lg-8">
+              <h2 class="section-title mb-2">Reservar cita</h2>
+              <p class="section-lead mb-0">
+                ¿Lista para salir con manos “iconic”? Reserva y lo dejamos perfecto.
+              </p>
+            </div>
+            <div class="col-lg-4 d-flex gap-2 justify-content-lg-end">
+              <!-- Sustituye el href por tu enlace real de reserva -->
+              <a class="btn-accent" href="https://www.google.com" target="_blank" rel="noreferrer">Reservar ↗</a>
+              <a class="btn-soft" href="#inicio">Volver arriba</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+      <div class="text-muted">© <span id="year"></span> Mimas Iconic</div>
+      <div class="text-muted">Cute-minimal, sin excusas.</div>
     </div>
-  </section>
+  </footer>
 
-  <!-- FAQ + CONTACTO -->
-  <section id="contacto">
-    <div class="wrap">
-      <div class="section-title">
-        <h2>Contacto</h2>
-        <p class="kicker">Tu próxima cita empieza con un “hola”.</p>
-      </div>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-      <div class="two-col reveal">
-        <div class="card">
-          <h3 style="margin:0 0 10px;">Datos</h3>
-          <p style="margin:0; font-weight:800; color: rgba(31,27,46,.78);">
-            📍 Valencia, España<br>
-            📩 Email: mimasiconic@email.com<br>
-            📱 Instagram: @mimasiconic
-          </p>
-          <div style="height:12px;"></div>
-          <p class="tiny" style="margin:0;">
+  <!-- GSAP + ScrollTrigger (animaciones como Emily) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Lenis (smooth scroll como Emily) -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+
+  <script>
+    // Año footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Smooth scroll (Lenis)
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!prefersReduced && window.Lenis) {
+      const lenis = new Lenis({
+        duration: 1.05,
+        smoothWheel: true,
+        smoothTouch: false,
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+
+      // Anchor links con Lenis
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener("click", (e) => {
+          const id = a.getAttribute("href");
+          const target = document.querySelector(id);
+          if (!target) return;
+          e.preventDefault();
+          lenis.scrollTo(target, { offset: -80 });
+        });
+      });
+    }
+
+    // GSAP setup
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Reveal (textos/CTA/sections)
+    gsap.utils.toArray(".reveal").forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 14 },
+        {
+          opacity: 1, y: 0, duration: .75, ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 85%" }
+        }
+      );
+    });
+
+    // Gallery reveal (stagger)
+    gsap.fromTo(".g-item",
+      { opacity: 0, y: 12 },
+      {
+        opacity: 1, y: 0, duration: .8, ease: "power2.out",
+        stagger: .08,
+        scrollTrigger: { trigger: "#galeria", start: "top 70%" }
+      }
+    );
+
+    // HERO Flip (scrub: gira mientras haces scroll)
+    const card = document.getElementById("flipCard");
+    if (card) {
+      gsap.to(card, {
+        rotateY: 180,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero-stage",
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+    }
+  </script>
+</body>
+</html>
