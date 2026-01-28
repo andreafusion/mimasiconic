@@ -1,5 +1,59 @@
 <!doctype html>
 <html lang="es">
+  <style>
+  /* ===== Flip Card (Mimas → Nails al hacer scroll) ===== */
+
+  /* Contenedor: crea “profundidad” 3D */
+  .flip-wrap{
+    perspective: 1200px;
+    perspective-origin: center;
+  }
+
+  /* Tarjeta: tamaño y transición suave */
+  .flip-card{
+    position: relative;
+    width: min(420px, 86vw);
+    aspect-ratio: 3 / 4;            /* Ajusta si quieres (por ejemplo 1/1 o 4/5) */
+    border-radius: 18px;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    transition: transform 900ms cubic-bezier(.2,.8,.2,1);
+    will-change: transform;
+  }
+
+  /* Cada cara */
+  .flip-card .face{
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Imágenes dentro: ocupan todo */
+  .flip-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* La cara trasera está girada 180° para “aparecer” al voltear */
+  .flip-card .back{
+    transform: rotateY(180deg);
+  }
+
+  /* Clase que activa el flip */
+  .flip-card.is-flipped{
+    transform: rotateY(180deg);
+  }
+
+  /* (Opcional) si el usuario tiene “reducir movimiento”, no animamos */
+  @media (prefers-reduced-motion: reduce){
+    .flip-card{ transition: none; }
+  }
+</style>
+  
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -417,6 +471,41 @@
     }
   </style>
 </head>
+<script>
+  // ===== Progressive Flip (gira según scroll) =====
+  (function(){
+    const card = document.getElementById("flipCard");
+    if(!card) return;
+
+    function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
+
+    // Ajusta estos números para decidir “en qué tramo” ocurre el giro
+    const startOffset = 0.70; // empieza cuando el card entra (70% de viewport)
+    const endOffset   = 0.35; // termina cuando sube más (35% de viewport)
+
+    function onScroll(){
+      const rect = card.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+
+      // Normalizamos la posición del card en pantalla a un progreso 0..1
+      const start = vh * startOffset;
+      const end   = vh * endOffset;
+
+      // Cuando rect.top == start => 0, cuando rect.top == end => 1
+      const t = (start - rect.top) / (start - end);
+      const p = clamp(t, 0, 1);
+
+      // Giramos de 0 a 180 grados según p
+      const rot = 180 * p;
+      card.style.transform = `rotateY(${rot}deg)`;
+    }
+
+    // Llamadas iniciales + listeners
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+  })();
+</script>
 
 <body>
 <header>
